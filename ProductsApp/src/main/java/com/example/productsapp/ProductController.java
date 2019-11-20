@@ -3,7 +3,7 @@ package com.example.productsapp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import com.example.productsapp.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,9 +30,10 @@ public class ProductController {
 	    public SubProducts createProduct(@PathVariable (value="productName") String productName,@RequestBody SubProducts subProduct) {
 			 subProduct.setProductName( productRepository.findByName(productName));
 			 subProduct.setMainProductName( productRepository.findByName(productName).getName());
-		     return subProductRepository.save(subProduct);
+		     return subProductRepository.save(subProduct); 
 		 
 	 }
+	 
 	 
 	 @GetMapping("/{productName}/subproducts")
 	    public List<SubProducts> getAllCommentsByPostId(@PathVariable (value = "productName") String productName) {

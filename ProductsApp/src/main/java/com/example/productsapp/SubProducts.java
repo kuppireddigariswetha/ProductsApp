@@ -29,7 +29,7 @@ public class SubProducts {
 	
 	@Column
 	private String subName;
-	
+
 	private String mainProductName;
 
 	public String getMainProductName() {
