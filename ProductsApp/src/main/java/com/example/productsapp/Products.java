@@ -1,4 +1,4 @@
-package com.example.ProductsApp;
+package com.example.productsapp;
 
 import java.time.LocalDate;
 
@@ -7,10 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name="product")
@@ -76,7 +74,7 @@ public class Products {
 	}
 
 	public Products(){
-		
+		//default constructor
 	}
 	
 }

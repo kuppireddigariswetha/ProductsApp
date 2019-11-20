@@ -1,8 +1,8 @@
-package com.example.ProductsApp;
+package com.example.productsapp;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,41 +21,34 @@ public class ProductController {
 	 
 	 
 	 
-	 @PostMapping("/posts")
+	 @PostMapping("/products")
 	    public Products createProduct(@RequestBody Products product) {
-		 
 	        return productRepository.save(product);
 	    }
 	 
-	 @PostMapping("/{productName}/subposts")
+	 @PostMapping("/{productName}/subproducts")
 	    public SubProducts createProduct(@PathVariable (value="productName") String productName,@RequestBody SubProducts subProduct) {
-	
 			 subProduct.setProductName( productRepository.findByName(productName));
 			 subProduct.setMainProductName( productRepository.findByName(productName).getName());
-		 return subProductRepository.save(subProduct);
+		     return subProductRepository.save(subProduct);
 		 
 	 }
 	 
-	 @GetMapping("/{productName}/subposts")
+	 @GetMapping("/{productName}/subproducts")
 	    public List<SubProducts> getAllCommentsByPostId(@PathVariable (value = "productName") String productName) {
 	        return subProductRepository.findByMainProductName(productName);
 	    }
 		
 	 
-	 @GetMapping("/subposts/{quan}")
-	    public HashMap<String,Double > getAllQuan(@PathVariable (value = "quan") int quan, @RequestBody SubProducts sb) {
-	       
+	 @GetMapping("/subproducts/{quan}")
+	    public Map<String,Double> getAllQuan(@PathVariable (value = "quan") int quan, @RequestBody SubProducts sb) {	       
 		 String productName=sb.getMainProductName();
-		 HashMap<String,Double > hm=new HashMap<String,Double> ();
-		 for(int i=0;i<subProductRepository.findByMainProductName(productName).size();i++) {
-			 
+		 Map<String,Double> hm=new HashMap<>();
+		 for(int i=0;i<subProductRepository.findByMainProductName(productName).size();i++) {			 
 			 String pn= subProductRepository.findByMainProductName(productName).get(i).getSubName();
-			 Double d= subProductRepository.findByMainProductName(productName).get(i).getSubCost()*quan;
-			 
+			 Double d= subProductRepository.findByMainProductName(productName).get(i).getSubCost()*quan; 
 			 hm.put(pn,d);
-			
 		 }
-		
 		return hm;
 	    }
 		

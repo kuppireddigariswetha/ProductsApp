@@ -1,10 +1,9 @@
-package com.example.ProductsApp;
+package com.example.productsapp;
 
 import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -53,7 +52,7 @@ public class SubProducts {
 	private LocalDate subThruDate;
 
 	public SubProducts() {
-		
+		//default constructor
 	}
 	
 	public int getId() {
